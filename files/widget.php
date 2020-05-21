@@ -1,22 +1,22 @@
 <?php
 /**
- * Adds banner_news_widget widget.
+ * Adds banner_banner_widget widget.
  */
 
-class banner_news_widget extends WP_Widget
+class banner_banner_widget extends WP_Widget
 {
 
     /**
      * Register widget with WordPress.
      */
     function __construct() {
-        parent::__construct('banner_news_widget',
+        parent::__construct('banner_banner_widget',
 
         // Base ID
-        __('News', 'simple-news'),
+        __('banner', 'simple-banner'),
 
         // Name
-        array('description' => __('List News', 'simple-news'),)
+        array('description' => __('List banner', 'simple-banner'),)
 
         // Args
         );
@@ -36,18 +36,18 @@ class banner_news_widget extends WP_Widget
         if (!empty($instance['title'])) {
             echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
         }
-/* single post = news */
-        if ( is_singular('news') ) {
+/* single post = banner */
+        if ( is_singular('banner') ) {
 
             if (!empty($instance['cat'])) {
 
-                $options = array('post_type' => 'news', 'posts_per_page' => $instance['number'], 'cat' => $instance['cat'], 'post__not_in' => array($post->ID));
+                $options = array('post_type' => 'banner', 'posts_per_page' => $instance['number'], 'cat' => $instance['cat'], 'post__not_in' => array($post->ID));
 
             }
 
             else {
 
-                $options = array('post_type' => 'news', 'posts_per_page' => $instance['number'], 'post__not_in' => array($post->ID));
+                $options = array('post_type' => 'banner', 'posts_per_page' => $instance['number'], 'post__not_in' => array($post->ID));
 
             }
 
@@ -57,32 +57,32 @@ class banner_news_widget extends WP_Widget
 
             if (!empty($instance['cat'])) {
 
-                $options = array('post_type' => 'news', 'posts_per_page' => $instance['number'], 'cat' => $instance['cat']);
+                $options = array('post_type' => 'banner', 'posts_per_page' => $instance['number'], 'cat' => $instance['cat']);
 
             }
 
             else {
 
-                $options = array('post_type' => 'news', 'posts_per_page' => $instance['number']);
+                $options = array('post_type' => 'banner', 'posts_per_page' => $instance['number']);
 
             }
 
         }
 
-        $img_options = get_option( 'simple_news_settings' );
+        $img_options = get_option( 'simple_banner_settings' );
 
         // The Query
         $the_query = new WP_Query($options); ?>
 
  <?php if ($the_query->have_posts()) { ?>
-    <div class="simple-news-con no-column">
+    <div class="simple-banner-con no-column">
     <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
         <?php simple_banner_loop(); ?>
      <?php endwhile; wp_reset_postdata(); ?>
     </div>
 <?php } ?>
 
-<p class="footer__link"><a href="<?php bloginfo('url') ?>/news"><?php _e('More News', 'simple-news') ?></a></p>
+<p class="footer__link"><a href="<?php bloginfo('url') ?>/banner"><?php _e('More banner', 'simple-banner') ?></a></p>
 
 <?php
 
@@ -123,7 +123,7 @@ echo $args['after_widget'];
 <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 </p>
 <p>
-<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of news to show:' ); ?></label>
+<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of banner to show:' ); ?></label>
 <input class="tiny-text" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" step="1" min="1" value="<?php echo $number; ?>" size="3" />
 </p>
 <p>
@@ -135,8 +135,8 @@ echo $args['after_widget'];
     }
 }
 
-// register banner_news_Widget widget
-function register_banner_news_widget() {
-    register_widget('banner_news_widget');
+// register banner_banner_Widget widget
+function register_banner_banner_widget() {
+    register_widget('banner_banner_widget');
 }
-add_action('widgets_init', 'register_banner_news_widget');
+add_action('widgets_init', 'register_banner_banner_widget');
