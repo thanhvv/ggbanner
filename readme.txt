@@ -1,8 +1,8 @@
-=== Simple News ===
+=== Breaking News ===
 
 Contributors: Võ Văn Thành
 Donate link: https://www.thanhvv.com
-Tags: Banner, Banner list, Simple Banner
+Tags: Breaking News
 Requires at least: 4.0
 Tested up to: 5.4
 Stable tag: trunk
@@ -11,22 +11,18 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-A very simple banner plugin that output banner. (img, title, date, excerpt and link)
+A very breaking news plugin that output. (img, title, date, excerpt and link)
 
 * Banner are order by pub date.
-* A post type "banner" is added.
-* On the options page (WP Settings Menu -> "Simple Banner"): choose image size and unset the plugin CSS (if you like).
-* Shortcodes examples: [banner cat=1,2 limitwordtitle=4 limitwordcontent=5 formatdate=Y-m-d imgtype = full]
+* On the options page (WP Settings Menu -> "Breaking News"): choose image size and unset the plugin CSS (if you like).
+* Shortcodes examples: [breaking-news number=3 col=3 offset=1 cat=42 post_type=hoi-vien taxonomy=chuyen-muc-hoi-vien limit_word_title=4 limit_word_content=5 format_date=Y-m-d img_type=breaking_news_plugin_small]
 
 == Installation ==
 
 1. Download the plugin, and unzip it.
 2. Place the Banner folder in your wp-content/plugins folder.
 3. Activate the plugin from the plugins tab of your Wordpress admin.
-4. Save permalink structure again - because of the post type (banner)
-
-1. Publish some news with the new post type = banner (Admin menu to the left)
-3. Use the shortcode on a published page
+4. Use the shortcode on a published page
 
 
 == Frequently Asked Questions ==

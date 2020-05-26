@@ -1,74 +1,74 @@
 <?php
-add_action( 'admin_menu', 'simple_banner_add_admin_menu' );
-add_action( 'admin_init', 'simple_banner_settings_init' );
+add_action( 'admin_menu', 'breaking_add_admin_menu' );
+add_action( 'admin_init', 'breaking_settings_init' );
 
-function simple_banner_add_admin_menu(  ) {
+function breaking_add_admin_menu(  ) {
 
-    add_options_page( 'Simple banner', 'Simple banner', 'manage_options', 'simple_banner', 'simple_banner_options_page' );
+    add_options_page( 'Breaking News', 'Breaking News', 'manage_options', 'breaking', 'breaking_options_page' );
 
 }
 
-function simple_banner_settings_init(  ) {
+function breaking_settings_init(  ) {
 
-    register_setting( 'pluginPages', 'simple_banner_settings' );
+    register_setting( 'pluginBreakingNews', 'breaking_settings' );
 
     add_settings_section(
-        'simple_banner_pluginPage_section',
-        __( 'Settings:', 'simple-banner' ),
-        'simple_banner_settings_section_callback',
-        'pluginPages'
+        'breaking_pluginPage_section',
+        __( 'Settings:', 'breaking-news' ),
+        'breaking_settings_section_callback',
+        'pluginBreakingNews'
     );
 
     add_settings_section(
-        'simple_banner_settings_section_info',
-        __( 'Settings:', 'simple-banner' ),
-        'simple_banner_settings_section_info',
-        'pluginPages'
+        'breaking_settings_section_info',
+        __( 'Settings:', 'breaking-news' ),
+        'breaking_settings_section_info',
+        'pluginBreakingNews'
     );
 
     add_settings_field(
-        'simple_banner_checkbox_css',
-        __( 'Gỡ bỏ css mặc định, sử dụng css tự định nghĩa', 'simple-banner' ),
-        'simple_banner_checkbox_css_render',
-        'pluginPages',
-        'simple_banner_pluginPage_section'
+        'breaking_checkbox_css',
+        __( 'Gỡ bỏ css mặc định, sử dụng css tự định nghĩa', 'breaking-news' ),
+        'breaking_checkbox_css_render',
+        'pluginBreakingNews',
+        'breaking_pluginPage_section'
     );
 
 }
 
-function simple_banner_checkbox_css_render(  ) 
+function breaking_checkbox_css_render(  ) 
 {
-    $options = get_option( 'simple_banner_settings' );
+    $options = get_option( 'breaking_settings' );
     ?>
-    <input type='checkbox' name='simple_banner_settings[simple_banner_checkbox_css]' <?php checked( (int)$options, 1 ); ?> value='1'>
+    <input type='checkbox' name='breaking_settings[breaking_checkbox_css]' <?php checked( (int)$options, 1 ); ?> value='1'>
     <?php
 }
 
-function simple_banner_settings_section_callback() 
+function breaking_settings_section_callback() 
 {
-    echo '<p class="simple_banner_info">' . __( 'Tự định nghĩa image size, css, format date theo mong muốn.', 'simple-banner' ) . '</p>';
+    echo '<p class="breaking_info">' . __( 'Tự định nghĩa image size, css, format date theo mong muốn.', 'breaking-news' ) . '</p>';
 }
 
-function simple_banner_settings_section_info() 
+function breaking_settings_section_info() 
 {
-    echo '<div class="simple-banner-info">';
-    echo '<p><strong>Hướng dẫn sử dụng Shortcodes:</strong><br /><em>' . __( '[banner cat=1,2 limitwordtitle=4 limitwordcontent=5 formatdate=Y-m-d imgtype = full]' ) . '</em></p>';
+    echo '<div class="breaking-news-info">';
+    echo '<p><strong>Hướng dẫn sử dụng Shortcodes:</strong><br /><em>' . __( '[breaking-news number=3 col=3 offset=1 cat=42 post_type=hoi-vien taxonomy=chuyen-muc-hoi-vien limit_word_title=4 limit_word_content=5 format_date=Y-m-d img_type=breaking_news_plugin_small]' ) . '</em></p>';
     echo '</div>';
 }
 
-function simple_banner_options_page() 
+function breaking_options_page() 
 { ?>
 <style>
     .form-table th {min-width: 280px;}
-    p.simple_banner_info {background: chocolate;padding: 1em;color: #fff;}
+    p.breaking_info {background: chocolate;padding: 1em;color: #fff;}
     h2 {display: none;}
-    .simple-banner-info {background:rgba(212, 105, 6, 0.1);padding: 1em;}
+    .breaking-news-info {background:rgba(212, 105, 6, 0.1);padding: 1em;}
 </style>
 <form action='options.php' method='post' style="background-color: #fff;padding: 1em 2em;margin: 20px 20px 20px 0; box-shadow: 0 0 1px #000;">
-<h1>Simple banner</h1>
+<h1>Breaking News</h1>
 <?php
-    settings_fields( 'pluginPages' );
-    do_settings_sections( 'pluginPages' );
+    settings_fields( 'pluginBreakingNews' );
+    do_settings_sections( 'pluginBreakingNews' );
     submit_button();
 ?>
 </form>
